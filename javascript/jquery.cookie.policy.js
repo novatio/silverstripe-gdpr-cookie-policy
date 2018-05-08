@@ -110,6 +110,7 @@
         // create stylesheet
         $('head').append('<style>' +
             '#cookie_container { display: none; position: fixed; ' + options.position + ': 0; left: ' + options.leftPadding + '; right: ' + options.rightPadding + '; z-index: 9999; padding: 10px; background-color:' + options.bgColor + '; color:' + options.textColor + '; }' +
+            '#cookie_container p { color:' + options.textColor + ' !important; }' +
             '.cookie_inner { width: 90%; margin: 0 auto; } .cookie_inner p { margin: 0; padding-top: 4px; } ' +
             '#setCookie { float: right; padding: 5px 10px; text-decoration: none; background-color: ' + options.btnColor + '; color: ' + options.btnTextColor + '; margin-right: 10px; } ' +
             '#setCookie:hover { background-color: ' + options.btnHoverColor + ' !important; color: ' + options.btnHoverTextColor + ' !important; } ' +
