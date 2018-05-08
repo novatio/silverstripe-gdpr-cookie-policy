@@ -3,6 +3,7 @@
     "description": "SilverStripe GDPR Cookie Policy Module",
     "type": "silverstripe-module",
     "homepage": "https://github.com/novatio/silverstripe-gdpr-cookie-policy",
+    "license": "BSD-3-Clause",
     "keywords": ["silverstripe", "cookie", "cookie-policy", "notification", "module", "cms", "gdrp", "avg"],
     "authors": [{
         "name": "Gabrijel Gavranović",
