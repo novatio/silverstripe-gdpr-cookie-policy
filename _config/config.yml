@@ -1,6 +1,5 @@
 ---
 Name: cookie-policy-notification
-Before: 'mysite/*'
 After: 'framework/*','cms/*'
 ---
 
