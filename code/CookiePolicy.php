@@ -143,11 +143,14 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
      */
     protected function pushAttributesToConfig(&$config, $attributes, $pre = '', $post = '')
     {
+        $shortCodeParser = ShortcodeParser::get_active();
+
         // add colors (with # in front)
         foreach ($attributes as $key => $value)
         {
             if ($this->siteConfig->$value) {
-                $config[$key] = "{$pre}{$this->siteConfig->$value}{$post}";
+                // parse the text using all shortcodeparers (for example to allow links in the content)
+                $config[$key] = $shortCodeParser->parse("{$pre}{$this->siteConfig->$value}{$post}");
             }
         }
     }
