@@ -103,14 +103,6 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
         // add colors (with # in front)
         $this->pushAttributesToConfig($config, $colors, '#');
 
-
-        //var_dump(json_encode($config, JSON_UNESCAPED_SLASHES));
-        //die();
-        //return Strin
-        //    $textObj = new Text('Test');
-			//$textObj->setValue(json_encode($config));
-        //return $textObj;
-
         return json_encode($config);
     }
 
