@@ -38,7 +38,7 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
                 Requirements::javascript(THIRDPARTY_DIR.'/jquery/jquery.js');
             }
 
-            Requirements::javascript('cookiepolicy/javascript/jquery.cookie.policy.min.js');
+            // Cannot use javascriptTemplate(), as RAW2JS breaks json data...
             Requirements::customScript($cookiepolicyjssnippet->renderWith('CookiePolicyJSSnippet', [
                 'config' => $this->getSnippetConfigudationValues()
             ]));
@@ -102,6 +102,14 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
 
         // add colors (with # in front)
         $this->pushAttributesToConfig($config, $colors, '#');
+
+
+        //var_dump(json_encode($config, JSON_UNESCAPED_SLASHES));
+        //die();
+        //return Strin
+        //    $textObj = new Text('Test');
+			//$textObj->setValue(json_encode($config));
+        //return $textObj;
 
         return json_encode($config);
     }
