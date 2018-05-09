@@ -8,7 +8,7 @@
 
 ## Installation instructions
 
-* Install via composer: ```composer require novatio/silverstripe-gdpr-cookie-policy```.
+* Install via composer: ```composer require novatio/gdpr-cookiepolicy```.
 * Visit ```yoursite.com```/dev/build?flush=1 to rebuild the database.
 * Visit ```yoursite.com```/admin/settings/, navigate to the ```Cookie Policy```-tab and customize the look and feel of 
 the Cookie Policy to your liking.
