@@ -111,7 +111,10 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
      */
     protected function includeGTM()
     {
-        if ($this->siteConfig->CookiePolicyIncludeGTM && $this->siteConfig->CookiePolicyGTMCode) {
+        if (self::accepted() &&
+            $this->siteConfig->CookiePolicyIncludeGTM &&
+            $this->siteConfig->CookiePolicyGTMCode
+        ) {
             // Inject GTM script
             Requirements::insertHeadTags("
                 <!-- Google Tag Manager -->
@@ -132,6 +135,23 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
                 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- End Google Tag Manager (noscript) -->
             ', "GTMNoScript");
+        }
+        // GA Fallback inject
+        elseif(!self::accepted() &&
+            $this->siteConfig->CookiePolicyIncludeGTM &&
+            $this->siteConfig->CookiePolicyGAFallbackCode
+        ) {
+            Requirements::insertHeadTags("
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+                <script async src='https://www.googletagmanager.com/gtag/js?id=".$this->siteConfig->CookiePolicyGAFallbackCode."'></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                
+                  gtag('config', '".$this->siteConfig->CookiePolicyGAFallbackCode."', { 'anonymize_ip': true });
+                </script>
+            ", "GTAFallbackScript");
         }
     }
 

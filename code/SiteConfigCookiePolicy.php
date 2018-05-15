@@ -31,8 +31,9 @@ class SiteConfigCookiePolicy extends DataExtension
         'CookiePolicyHideAnimation'            => 'Varchar(20)',
 
         // Optional GTM fields
-        'CookiePolicyIncludeGTM' => 'Boolean',
-        'CookiePolicyGTMCode'    => 'Varchar(16)',
+        'CookiePolicyIncludeGTM'     => 'Boolean',
+        'CookiePolicyGTMCode'        => 'Varchar(16)',
+        'CookiePolicyGAFallbackCode' => 'Varchar(16)',
     ];
 
     /**
@@ -53,6 +54,10 @@ class SiteConfigCookiePolicy extends DataExtension
                 ->setTitle(_t('CookiePolicy.INCLUDEGTM', "Include Google Tag Manager when agreed?")),
             TextField::create("CookiePolicyGTMCode")
                 ->setTitle(_t('CookiePolicy.GTMCODE', "Google Tag Manager Code"))
+                ->displayIf('CookiePolicyIncludeGTM')->isChecked()->end(),
+            TextField::create("CookiePolicyGAFallbackCode")
+                ->setTitle(_t('CookiePolicy.GAFALLBACKCODE', "GA Anonymized IP Fallback"))
+                ->setDescription(_t('CookiePolicy.GAFALLBACKDESCR', "Used when visitor has not accepted cookies."))
                 ->displayIf('CookiePolicyIncludeGTM')->isChecked()->end(),
             DropdownField::create("CookiePolicyPosition")
                 ->setSource(singleton('SiteConfig')->dbObject('CookiePolicyPosition')->enumValues())
