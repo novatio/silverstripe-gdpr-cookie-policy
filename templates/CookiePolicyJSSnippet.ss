@@ -1,19 +1,3 @@
-if (typeof define === 'function' && typeof require === 'function' && typeof window.jQuery === 'undefined') {
-    deferJQ(function () {
-        require([
-            '/cookiepolicy/javascript/jquery.cookie.min.js'
-        ], function(cookie) {
-            require([
-                '/cookiepolicy/javascript/jquery.policy.min.js'
-            ], function (policy) {
-                $('body').cookieNotify($config.RAW);
-            });
-        });
-    });
-} else {
-    injectPolicyScript('/cookiepolicy/javascript/jquery.cookie.policy.min.js');
-}
-
 // defer method, wait for jQuery
 function deferJQ(method) {
     if (window.jQuery) {
@@ -34,3 +18,27 @@ function injectPolicyScript(file) {
     script.src = file;
     document.getElementsByTagName('head')[0].appendChild(script);
 }
+
+// init script
+function initCookiePolicy() {
+    if (typeof define === 'function' && typeof require === 'function' && typeof window.jQuery === 'undefined') {
+        deferJQ(function () {
+            require([
+                '/cookiepolicy/javascript/jquery.cookie.min.js'
+            ], function(cookie) {
+                require([
+                    '/cookiepolicy/javascript/jquery.policy.min.js'
+                ], function (policy) {
+                    $('body').cookieNotify($config.RAW);
+                });
+            });
+        });
+    } else {
+        injectPolicyScript('/cookiepolicy/javascript/jquery.cookie.policy.min.js');
+    }
+}
+
+// we do not know whether require.js is loaded with "async"; just hold off for a sec to start the checks.
+setTimeout(function() {
+    initCookiePolicy();
+}, 1000);
