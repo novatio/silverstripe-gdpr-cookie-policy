@@ -53,8 +53,10 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
      */
     public static function accepted()
     {
-        // must check for string values, using filter_var.
-        return filter_var(Cookie::get('cookie_policy'), FILTER_VALIDATE_BOOLEAN);
+        $siteConfig = SiteConfig::current_site_config();
+
+        // must check for string values, using filter_var (and if not active, treat as accepted.
+        return !$siteConfig->CookiePolicyIsActive || filter_var(Cookie::get('cookie_policy'), FILTER_VALIDATE_BOOLEAN);
     }
 
     /**
