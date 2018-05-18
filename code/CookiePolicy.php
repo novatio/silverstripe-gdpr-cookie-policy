@@ -43,6 +43,20 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
                 'config' => $this->getSnippetConfigudationValues()
             ]));
 
+            // Reset functionality
+            Requirements::customScript("
+                var links = document.getElementsByTagName('a');
+                for(var i = 0; i< links.length; i++){
+                    if (links[i].href.split('#resetcookies').length > 1) {
+                        links[i].addEventListener('click', function(event){
+                            event.preventDefault();
+                            document.cookie = 'cookie_policy=; Max-Age=-99999999;';
+                            window.location.reload(); 
+                        }); 
+                    }
+                }
+            ");
+
             // inject GTM when enabled.
             $this->includeGTM();
         }
