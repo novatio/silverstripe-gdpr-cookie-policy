@@ -24,24 +24,24 @@
 
         // create stylesheet
         $('head').append('<style>' +
-            '#cookie_container { display: none; position: fixed; ' + options.position + ': 0; left: ' + options.leftPadding + '; right: ' + options.rightPadding + '; z-index: 9999; padding: 10px; background-color:' + options.bgColor + '; color:' + options.textColor + '; }' +
+            '#cookie_container { display: none; position: fixed; ' + options.position + ': 0; left: ' + options.leftPadding + '; right: ' + options.rightPadding + '; z-index: 9999; padding: 10px; background-color:' + options.bgColor + ' !important; color:' + options.textColor + ' !important; }' +
             '#cookie_container p { color:' + options.textColor + ' !important; }' +
             '#cookie_container p a { color:' + options.textColor + ' !important; text-decoration: underline !important; }' +
             '.cookie_inner { width: 90%; margin: 0 auto; } .cookie_inner p { margin: 0; padding-top: 4px; } ' +
-            '#setCookie { float: right; padding: 5px 10px; text-decoration: none; background-color: ' + options.btnColor + '; color: ' + options.btnTextColor + '; margin-right: 10px; } ' +
+            '#setCookie { float: right; padding: 5px 10px; text-decoration: none; background-color: ' + options.btnColor + ' !important; color: ' + options.btnTextColor + ' !important; margin-right: 10px; } ' +
             '#setCookie:hover { background-color: ' + options.btnHoverColor + ' !important; color: ' + options.btnHoverTextColor + ' !important; } ' +
-            '#declineCookie { float: right; padding: 5px 10px; text-decoration: underline; ' + (options.declineBtnColor ? ' background-color: ' + options.declineBtnColor + '; ' : '' ) +  'color: ' + options.declineBtnTextColor + '; } ' +
+            '#declineCookie { float: right; padding: 5px 10px; text-decoration: underline; ' + (options.declineBtnColor ? ' background-color: ' + options.declineBtnColor + ' !important; ' : '' ) +  'color: ' + options.declineBtnTextColor + ' !important; } ' +
             '#declineCookie:hover { ' + (options.declineBtnHoverColor ? 'background-color: ' + options.declineBtnHoverColor + ' !important; ' : '' ) + (options.declineBtnHoverTextColor ? 'color: ' + options.declineBtnHoverTextColor + ' !important; ' : '' ) + ' }' +
-            '</style>');
+        '</style>');
 
         // create popup elements
         $('<div id="cookie_container">' +
             '<div class="cookie_inner">' +
             '   <a id="declineCookie" href="#">' + options.declineBtnText + '</a>' +
             '   <a id="setCookie" href="#">' + options.btnText + '</a>' +
-            options.text +
+                    options.text +
             '</div>' +
-            '</div>').appendTo(this);
+        '</div>').appendTo(this);
 
         // set cookie function
         $(document.body).on('click', '#setCookie', function(e) {

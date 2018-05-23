@@ -13,7 +13,7 @@ function injectPolicyScript(file) {
     script.type = 'text/javascript';
     script.async = false;
     script.onload = function(){
-        $('body').cookieNotify($config.RAW);
+        jQuery('body').cookieNotify($config.RAW);
     };
     script.src = file;
     document.getElementsByTagName('head')[0].appendChild(script);
@@ -29,7 +29,7 @@ function initCookiePolicy() {
                 require([
                     '/cookiepolicy/javascript/jquery.policy.min.js'
                 ], function (policy) {
-                    $('body').cookieNotify($config.RAW);
+                    jQuery('body').cookieNotify($config.RAW);
                 });
             });
         });
