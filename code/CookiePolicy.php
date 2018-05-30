@@ -50,7 +50,7 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
                     if (links[i].href.split('#resetcookies').length > 1) {
                         links[i].addEventListener('click', function(event){
                             event.preventDefault();
-                            document.cookie = 'cookie_policy=; Max-Age=-99999999;';
+                            document.cookie = 'cookie_policy=; path=/; Max-Age=-99999999;';
                             window.location.reload(); 
                         }); 
                     }
