@@ -17,7 +17,12 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
      */
     public function onBeforeInit()
     {
-        $this->siteConfig = SiteConfig::current_site_config();
+        $this->siteConfig = $this->owner->getSiteConfig();
+
+        if (!$this->siteConfig || !$this->siteConfig->exists()) {
+            $this->siteConfig = SiteConfig::current_site_config();
+        }
+
         $this->includeCookiePolicyNotification = $this->siteConfig->CookiePolicyIsActive;
     }
 
