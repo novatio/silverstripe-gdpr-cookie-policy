@@ -68,11 +68,20 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
     }
 
     /**
+     * @param null $siteConfig
+     *
      * @return bool
      */
-    public static function accepted()
+    public static function accepted($siteConfig = null)
     {
-        $siteConfig = SiteConfig::current_site_config();
+        if (!$siteConfig || !$siteConfig->exists()) {
+            $siteConfig = (new ContentController())->getSiteConfig();
+
+            // one more extra check
+            if (!$siteConfig || !$siteConfig->exists()) {
+                $siteConfig = SiteConfig::current_site_config();
+            }
+        }
 
         // must check for string values, using filter_var (and if not active, treat as accepted.
         return !$siteConfig->CookiePolicyIsActive || filter_var(Cookie::get('cookie_policy'), FILTER_VALIDATE_BOOLEAN);
@@ -132,7 +141,7 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
      */
     protected function includeGTM()
     {
-        if (self::accepted() &&
+        if (self::accepted($this->siteConfig) &&
             $this->siteConfig->CookiePolicyIncludeGTM &&
             $this->siteConfig->CookiePolicyGTMCode
         ) {
@@ -158,7 +167,7 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
             ', "GTMNoScript");
         }
         // GA Fallback inject
-        elseif(!self::accepted() &&
+        elseif(!self::accepted($this->siteConfig) &&
             $this->siteConfig->CookiePolicyIncludeGTM &&
             $this->siteConfig->CookiePolicyGAFallbackCode
         ) {
