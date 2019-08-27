@@ -16,7 +16,7 @@
         "silverstripe/cms": "~3.0",
         "silverstripe/framework": "~3.0",
         "tractorcow/silverstripe-colorpicker": "~3.0",
-        "silverstripe/display-logic": "1.2.*|1.5.*"
+        "silverstripe/display-logic": "1.6.*"
     },
     "extra": {
         "installer-name": "cookiepolicy"
