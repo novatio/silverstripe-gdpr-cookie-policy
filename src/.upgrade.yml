@@ -1,0 +1,3 @@
+mappings:
+  CookiePolicy: Novatio\CookiePolicy\CookiePolicy
+  SiteConfigCookiePolicy: Novatio\CookiePolicy\SiteConfigCookiePolicy

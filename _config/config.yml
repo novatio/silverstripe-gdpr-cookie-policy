@@ -1,12 +1,11 @@
 ---
 Name: cookie-policy-notification
-After: 'framework/*','cms/*'
 ---
 
-Page_Controller:
+PageController:
   extensions:
-    - CookiePolicy
+    - Novatio\CookiePolicy\CookiePolicy
 
-SiteConfig:
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - SiteConfigCookiePolicy
+    - Novatio\CookiePolicy\SiteConfigCookiePolicy

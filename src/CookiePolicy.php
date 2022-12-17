@@ -1,5 +1,16 @@
 <?php
 
+namespace Novatio\CookiePolicy;
+
+use SilverStripe\Core\Extension;
+use SilverStripe\View\TemplateGlobalProvider;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\View\ArrayData;
+use SilverStripe\View\Requirements;
+use SilverStripe\Control\Cookie;
+use SilverStripe\View\Parsers\ShortcodeParser;
+use Colymba\ColorField\DBColor;
+
 class CookiePolicy extends Extension implements TemplateGlobalProvider
 {
     /**
@@ -40,7 +51,8 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
             ]);
 
             if ($this->siteConfig->CookiePolicyIncludeJquery) {
-                Requirements::javascript(THIRDPARTY_DIR.'/jquery/jquery.js');
+                // TODO: check if still needed/wanted/working
+                Requirements::javascript('silverstripe/framework:jquery/jquery.js');
             }
 
             // Cannot use javascriptTemplate(), as RAW2JS breaks json data...
@@ -56,8 +68,8 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
                         links[i].addEventListener('click', function(event){
                             event.preventDefault();
                             document.cookie = 'cookie_policy=; path=/; Max-Age=-99999999;';
-                            window.location.reload(); 
-                        }); 
+                            window.location.reload();
+                        });
                     }
                 }
             ");
@@ -178,7 +190,7 @@ class CookiePolicy extends Extension implements TemplateGlobalProvider
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                
+
                   gtag('config', '".$this->siteConfig->CookiePolicyGAFallbackCode."', { 'anonymize_ip': true });
                 </script>
             ", "GTAFallbackScript");
