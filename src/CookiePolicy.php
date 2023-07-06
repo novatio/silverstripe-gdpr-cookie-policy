@@ -2,6 +2,7 @@
 
 namespace Novatio\CookiePolicy;
 
+use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Core\Extension;
 use SilverStripe\View\TemplateGlobalProvider;
 use SilverStripe\SiteConfig\SiteConfig;
